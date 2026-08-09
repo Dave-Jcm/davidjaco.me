@@ -9,6 +9,7 @@ module.exports = function (eleventyConfig) {
 
   // Static assets copied as-is into the build output.
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
