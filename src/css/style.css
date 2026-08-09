@@ -1,8 +1,6 @@
 /*
   davidjaco.me
   Hand-written, covers only what the site actually uses.
-  Replaces the inherited Webflow export (normalize.css + unused
-  component styles for sliders, lightboxes, forms, nav dropdowns, etc.)
 */
 
 /* ---------- Reset ---------- */
@@ -52,22 +50,20 @@ p {
 	margin-bottom: 10px;
 }
 
-/* ---------- Custom font (heading accent only) ---------- */
+/* ---------- Custom font ---------- */
 
 @font-face {
 	font-family: "Alte Haas Grotesk";
-	src: url("https://uploads-ssl.webflow.com/61ac476178d292ac07a6b4d1/61ac4ac0f7452f0e2ff80ca6_AlteHaasGroteskBold.ttf")
-		format("truetype");
-	font-weight: 700;
+	src: url("/assets/fonts/AlteHaasGroteskRegular.ttf") format("truetype");
+	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 
 @font-face {
 	font-family: "Alte Haas Grotesk";
-	src: url("https://uploads-ssl.webflow.com/61ac476178d292ac07a6b4d1/61ac4ac06aefde497066458e_AlteHaasGroteskRegular.ttf")
-		format("truetype");
-	font-weight: 400;
+	src: url("/assets/fonts/AlteHaasGroteskBold.ttf") format("truetype");
+	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
@@ -75,11 +71,6 @@ p {
 /* ---------- Nav ---------- */
 
 .nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 999;
 	height: 80px;
 	display: flex;
 	align-items: center;
@@ -87,25 +78,23 @@ p {
 	padding: 0 20px;
 }
 
-.nav-logo {
-	display: inline-block;
-	max-width: 100%;
+.site-logo {
+	color: #151716;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1;
 }
 
-.nav-logo img {
-	display: inline-block;
-	max-width: 100%;
-}
-
-.nav-logo:hover img {
-	filter: contrast(200%);
+.site-logo:hover {
+	color: #000;
 }
 
 /* ---------- Page content ---------- */
 
 .content {
 	max-width: 700px;
-	margin: 100px auto 60px;
+	margin: 20px auto 60px;
 	padding: 0 20px;
 }
 
@@ -113,6 +102,7 @@ p {
 	margin-top: 10px;
 	margin-bottom: 30px;
 	font-family: "Alte Haas Grotesk", sans-serif;
+	font-weight: 700;
 	color: #000;
 	font-size: 22px;
 	text-align: center;
@@ -156,12 +146,6 @@ p {
 }
 
 /* ---------- Responsive ---------- */
-
-@media screen and (max-width: 767px) {
-	.content {
-		margin-top: 100px;
-	}
-}
 
 @media screen and (max-width: 479px) {
 	.nav {
