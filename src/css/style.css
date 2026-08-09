@@ -140,11 +140,11 @@ p {
 }
 
 .post-body {
-	font-family: "Jost", sans-serif;
+	font-family: "Switzer", "Alte Haas Grotesk", Arial, sans-serif;
 	font-size: 15px;
-	font-weight: 300;
-	line-height: 1.52;
-	letter-spacing: -0.008em;
+	font-weight: 400;
+	line-height: 1.48;
+	letter-spacing: -0.015em;
 }
 
 .closing-note {
