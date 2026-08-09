@@ -1,8 +1,6 @@
 /*
   davidjaco.me
   Hand-written, covers only what the site actually uses.
-  Replaces the inherited Webflow export (normalize.css + unused
-  component styles for sliders, lightboxes, forms, nav dropdowns, etc.)
 */
 
 /* ---------- Reset ---------- */
@@ -22,7 +20,9 @@ body {
 	min-height: 100%;
 	background-color: #fff;
 	color: #333;
-	font-family: "Alte Haas Grotesk", Arial, sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 1.5;
@@ -40,7 +40,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 700;
+	font-weight: bold;
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
@@ -71,11 +71,6 @@ p {
 /* ---------- Nav ---------- */
 
 .nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 999;
 	height: 80px;
 	display: flex;
 	align-items: center;
@@ -84,28 +79,29 @@ p {
 }
 
 .site-logo {
-	color: inherit;
+	color: #151716;
 	text-decoration: none;
-	font-family: "Alte Haas Grotesk", Arial, sans-serif;
+	font-size: 20px;
 	font-weight: 400;
+	line-height: 1;
 }
 
 .site-logo:hover {
-	text-decoration: none;
+	color: #000;
 }
 
 /* ---------- Page content ---------- */
 
 .content {
 	max-width: 700px;
-	margin: 100px auto 60px;
+	margin: 20px auto 60px;
 	padding: 0 20px;
 }
 
 .page-title {
 	margin-top: 10px;
 	margin-bottom: 30px;
-	font-family: "Alte Haas Grotesk", Arial, sans-serif;
+	font-family: "Alte Haas Grotesk", sans-serif;
 	font-weight: 700;
 	color: #000;
 	font-size: 22px;
@@ -125,7 +121,6 @@ p {
 	margin-bottom: 0;
 	font-size: 18px;
 	line-height: 24px;
-	font-weight: 700;
 	color: #151716;
 }
 
@@ -151,12 +146,6 @@ p {
 }
 
 /* ---------- Responsive ---------- */
-
-@media screen and (max-width: 767px) {
-	.content {
-		margin-top: 100px;
-	}
-}
 
 @media screen and (max-width: 479px) {
 	.nav {
