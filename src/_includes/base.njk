@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+	<meta charset="utf-8">
+	<title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+	<meta name="description" content="{{ description or site.description }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+	<link rel="icon" type="image/x-icon" href="{{ site.favicon }}">
+	<link rel="stylesheet" href="/css/style.css">
+
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+	<meta property="og:description" content="{{ description or site.description }}">
+	<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+	<meta name="twitter:card" content="summary">
+</head>
+<body>
+	<header class="nav">
+		<a href="/" class="nav-logo" aria-label="{{ site.title }} — inicio">
+			<img src="{{ site.logo }}" width="167" alt="{{ site.title }}">
+		</a>
+	</header>
+
+	<main class="content">
+		{{ content | safe }}
+	</main>
+</body>
+</html>

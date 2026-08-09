@@ -1,0 +1,21 @@
+---
+layout: base.njk
+permalink: /
+---
+<h1 class="page-title">&quot;thoughts&quot;</h1>
+
+<div class="posts">
+{% for post in collections.posts %}
+	<article class="post">
+		<h2 class="post-title">{{ post.data.title }}</h2>
+		<p class="post-meta">@daajco {{ post.data.displayDate }}</p>
+		<div class="post-body">
+			{{ post.templateContent | safe }}
+		</div>
+	</article>
+{% endfor %}
+</div>
+
+<p class="closing-note">
+	<em><small lang="ar">لا ظلام مثل الجهل.</small></em>
+</p>
