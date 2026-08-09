@@ -142,8 +142,9 @@ p {
 .post-body {
 	font-family: "Newsreader", Georgia, serif;
 	font-size: 18px;
-	line-height: 1.5;
-	font-weight: 500;
+	line-height: 1.52;
+	font-weight: 440;
+	letter-spacing: -0.005em;
 }
 
 .closing-note {
