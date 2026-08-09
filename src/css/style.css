@@ -140,11 +140,11 @@ p {
 }
 
 .post-body {
-	font-family: "Newsreader", Georgia, serif;
-	font-size: 18px;
-	line-height: 1.52;
-	font-weight: 440;
-	letter-spacing: -0.005em;
+	font-family: "Jost", sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: -0.012em;
 }
 
 .closing-note {
