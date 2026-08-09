@@ -141,10 +141,10 @@ p {
 
 .post-body {
 	font-family: "Jost", sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 1.5;
-	letter-spacing: -0.012em;
+	font-size: 15px;
+	font-weight: 300;
+	line-height: 1.52;
+	letter-spacing: -0.008em;
 }
 
 .closing-note {
