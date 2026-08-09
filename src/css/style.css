@@ -71,14 +71,10 @@ p {
 /* ---------- Nav ---------- */
 
 .nav {
-	position: sticky;
-	top: 0;
-	z-index: 999;
-	height: 80px;
-	display: flex;
-	align-items: center;
-	background-color: #fff;
-	padding: 0 20px;
+	position: fixed;
+	top: 28px;
+	left: 20px;
+	z-index: 10;
 }
 
 .site-logo {
@@ -98,8 +94,19 @@ p {
 
 .content {
 	max-width: 700px;
-	margin: 20px auto 60px;
+	margin: 100px auto 60px;
 	padding: 0 20px;
+}
+
+.page-title {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	font-family: "Alte Haas Grotesk", Arial, sans-serif;
+	font-weight: 400;
+	color: #000;
+	font-size: 22px;
+	line-height: 1.2;
+	text-align: center;
 }
 
 /* ---------- Posts ---------- */
@@ -141,14 +148,13 @@ p {
 
 /* ---------- Responsive ---------- */
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 767px) {
 	.nav {
 		position: static;
-		height: 60px;
-		padding: 0 15px;
+		padding: 24px 15px 0;
 	}
 
 	.content {
-		margin-top: 20px;
+		margin-top: 40px;
 	}
 }
