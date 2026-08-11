@@ -1,0 +1,17 @@
+{
+  "name": "davidjaco-admin",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Single-user admin Worker for davidjaco.me — talks to GitHub server-side, never exposes credentials to the browser.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

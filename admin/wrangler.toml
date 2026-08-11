@@ -1,0 +1,32 @@
+name = "davidjaco-admin"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = false
+
+# Requires davidjaco.me to be an active zone on Cloudflare (see setup notes)
+# and a CNAME for admin.davidjaco.me pointed at Cloudflare — both manual,
+# one-time steps. See handoff notes for exact instructions.
+routes = [
+  { pattern = "admin.davidjaco.me", custom_domain = true }
+]
+
+# Serves everything in ./public directly for static-first performance.
+# API requests are explicitly forced through the Worker script rather than
+# relying on "no matching static file" fallthrough.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[vars]
+GITHUB_OWNER = "Dave-Jcm"
+GITHUB_REPO = "davidjaco.me"
+GITHUB_BRANCH = "main"
+# Replace with the one Google account allowed to sign in via Cloudflare Access.
+# Not a secret by itself — Access is the actual security boundary — but must
+# match the email in your Access policy exactly.
+ALLOWED_EMAIL = "davejacomec@gmail.com"
+
+# Set with: wrangler secret put GITHUB_TOKEN
+# Never put the token here or anywhere in vars — this file is committed.

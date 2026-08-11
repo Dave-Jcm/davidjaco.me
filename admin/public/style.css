@@ -1,0 +1,485 @@
+/* davidjaco.me admin — typography-led, editorial, flat.
+   Borrows the public site's identity (Alte Haas Grotesk display font,
+   quiet #333/#777 palette) rather than generic dashboard chrome. */
+
+@font-face {
+	font-family: "Alte Haas Grotesk";
+	src: url("/fonts/AlteHaasGroteskRegular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Alte Haas Grotesk";
+	src: url("/fonts/AlteHaasGroteskBold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100%;
+	background: #fff;
+	color: #333;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+button, input, textarea {
+	font: inherit;
+}
+
+/* ---------- Top ---------- */
+
+.topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 32px 20px 20px;
+}
+
+.topbar-title {
+	font-family: "Alte Haas Grotesk", sans-serif;
+	font-size: 17px;
+	color: #000;
+}
+
+.app {
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 0 20px 100px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+	padding: 10px 18px;
+	border-radius: 4px;
+	border: 1px solid #d8d8d8;
+	background: #fff;
+	color: #222;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.btn:hover {
+	background: #f5f5f4;
+}
+
+.btn-primary {
+	background: #111;
+	color: #fff;
+	border-color: #111;
+}
+
+.btn-primary:hover {
+	background: #333;
+}
+
+.btn-text {
+	border: none;
+	background: none;
+	padding: 6px 0;
+	color: #777;
+	cursor: pointer;
+}
+
+.btn-text:hover {
+	color: #111;
+	text-decoration: underline;
+}
+
+/* Quiet destructive text link — not a button, so it doesn't compete
+   visually with Save/Publish. */
+.link-danger {
+	border: none;
+	background: none;
+	padding: 4px 0;
+	color: #a6493a;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.link-danger:hover {
+	text-decoration: underline;
+}
+
+/* ---------- Drafts / Published nav ---------- */
+
+.section-nav {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	margin: 4px 0 28px;
+	font-family: "Alte Haas Grotesk", sans-serif;
+	font-size: 17px;
+}
+
+.section-nav button {
+	border: none;
+	background: none;
+	padding: 0;
+	cursor: pointer;
+	color: #bbb;
+	font: inherit;
+}
+
+.section-nav button.active {
+	color: #000;
+}
+
+.section-nav button:hover {
+	color: #000;
+}
+
+.section-nav .sep {
+	color: #ccc;
+}
+
+/* ---------- Post list ---------- */
+
+.post-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.post-row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 18px 0;
+	border-bottom: 1px solid #eee;
+	cursor: pointer;
+	background: none;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	text-align: left;
+	width: 100%;
+}
+
+.post-row-title {
+	font-size: 16px;
+	color: #222;
+}
+
+.post-row:hover .post-row-title {
+	text-decoration: underline;
+}
+
+.post-row-meta {
+	font-size: 13px;
+	color: #999;
+	white-space: nowrap;
+}
+
+.empty-state {
+	color: #999;
+	font-size: 14px;
+	padding: 60px 0;
+	text-align: center;
+}
+
+/* ---------- Editor ---------- */
+
+.editor-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 4px 0 24px;
+}
+
+.status-indicator {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	font-size: 13px;
+	color: #777;
+}
+
+.status-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: #ccc;
+}
+
+.status-dot.draft {
+	background: #c98a1c;
+}
+
+.status-dot.published {
+	background: #3f7d4a;
+}
+
+.recovery-banner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 10px 14px;
+	margin-bottom: 20px;
+	background: #fbf6ea;
+	border: 1px solid #ecdfc0;
+	border-radius: 4px;
+	font-size: 13px;
+	color: #7a6323;
+}
+
+.recovery-banner .actions-inline {
+	display: flex;
+	gap: 14px;
+	white-space: nowrap;
+}
+
+.recovery-banner button {
+	border: none;
+	background: none;
+	padding: 0;
+	cursor: pointer;
+	font: inherit;
+	font-size: 13px;
+	color: #7a6323;
+	text-decoration: underline;
+}
+
+.field {
+	margin-bottom: 20px;
+}
+
+#title-input {
+	display: block;
+	width: 100%;
+	font-family: "Alte Haas Grotesk", sans-serif;
+	font-size: 30px;
+	padding: 4px 0 10px;
+	border: none;
+	border-bottom: 1px solid transparent;
+	background: none;
+	color: #000;
+}
+
+#title-input::placeholder {
+	color: #ccc;
+}
+
+#title-input:focus {
+	outline: none;
+	border-bottom-color: #ddd;
+}
+
+.field-label {
+	display: block;
+	font-size: 12px;
+	color: #aaa;
+	margin-bottom: 8px;
+}
+
+#body-input {
+	width: 100%;
+	min-height: 360px;
+	font-size: 15.5px;
+	line-height: 1.7;
+	padding: 14px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	background: #fff;
+	resize: vertical;
+	color: #222;
+}
+
+#body-input:focus {
+	outline: none;
+	border-color: #999;
+}
+
+#body-input.drag-over {
+	border-color: #111;
+	border-style: dashed;
+	background: #fafafa;
+}
+
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 18px;
+	margin: 10px 0 22px;
+}
+
+.toolbar button {
+	border: none;
+	background: none;
+	padding: 0;
+	color: #777;
+	cursor: pointer;
+	font-size: 13.5px;
+}
+
+.toolbar button:hover {
+	color: #111;
+	text-decoration: underline;
+}
+
+.alt-text-form {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: -12px 0 22px;
+	padding: 10px 12px;
+	background: #fafafa;
+	border: 1px solid #eee;
+	border-radius: 4px;
+}
+
+.alt-text-form label {
+	font-size: 12px;
+	color: #999;
+	white-space: nowrap;
+}
+
+.alt-text-form input[type="text"] {
+	flex: 1;
+	min-width: 0;
+	padding: 6px 8px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 13.5px;
+}
+
+.alt-text-form input[type="text"]:focus {
+	outline: none;
+	border-color: #999;
+}
+
+.alt-text-form button {
+	border: none;
+	background: #111;
+	color: #fff;
+	padding: 6px 12px;
+	border-radius: 4px;
+	font-size: 13px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.preview-box {
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	margin-bottom: 24px;
+	background: #fff;
+	overflow: hidden;
+}
+
+.preview-frame {
+	display: block;
+	width: 100%;
+	height: 360px;
+	border: none;
+}
+
+.actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+	padding-top: 20px;
+	border-top: 1px solid #eee;
+}
+
+.inline-confirm {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	font-size: 13.5px;
+	color: #555;
+	padding: 4px 0;
+}
+
+.inline-confirm .btn-confirm-danger {
+	background: #a6493a;
+	color: #fff;
+	border-color: #a6493a;
+	padding: 7px 14px;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.inline-confirm .btn-confirm-danger:hover {
+	background: #8f3c2f;
+}
+
+.inline-confirm button.cancel {
+	border: none;
+	background: none;
+	padding: 4px 0;
+	color: #777;
+	cursor: pointer;
+	font: inherit;
+	font-size: 13px;
+}
+
+.inline-confirm button.cancel:hover {
+	color: #111;
+	text-decoration: underline;
+}
+
+.danger-actions {
+	margin-top: 20px;
+}
+
+.status-line {
+	font-size: 13px;
+	color: #999;
+	margin-top: 14px;
+	min-height: 18px;
+}
+
+.status-line.error {
+	color: #a6493a;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+	.topbar {
+		padding: 20px 16px 16px;
+	}
+	.app {
+		padding: 0 16px 80px;
+	}
+	#title-input {
+		font-size: 24px;
+	}
+	.actions {
+		flex-direction: column;
+	}
+	.actions .btn {
+		width: 100%;
+		padding: 12px 18px;
+	}
+	.toolbar {
+		gap: 14px;
+	}
+	.alt-text-form {
+		flex-wrap: wrap;
+	}
+	.alt-text-form input[type="text"] {
+		width: 100%;
+	}
+}
