@@ -4,11 +4,15 @@ const newDraftBtn = document.getElementById("new-draft-btn");
 let activeTab = "drafts";
 let currentSlug = null;
 let currentView = "dashboard"; // "dashboard" | "editor"
-let savedSnapshot = { title: "", body: "" }; // last saved/loaded state, for dirty checks
+let savedSnapshot = { title: "", body: "", date: "" }; // last saved/loaded state, for dirty checks
 let autosaveTimer = null;
 
+function todayIsoClient() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 newDraftBtn.addEventListener("click", () => {
-  openEditor({ slug: null, title: "", body: "", draft: true });
+  openEditor({ slug: null, title: "", body: "", draft: true, date: todayIsoClient() });
 });
 
 async function api(path, options = {}) {
@@ -105,11 +109,11 @@ function clearRecovery(slug) {
   }
 }
 
-function writeRecovery(slug, title, body) {
+function writeRecovery(slug, title, body, date) {
   try {
     localStorage.setItem(
       recoveryKeyFor(slug),
-      JSON.stringify({ title, body, savedAt: Date.now() })
+      JSON.stringify({ title, body, date, savedAt: Date.now() })
     );
   } catch {
     /* storage unavailable or full — recovery is best-effort only */
@@ -121,21 +125,27 @@ function scheduleLocalAutosave() {
   autosaveTimer = setTimeout(() => {
     const title = document.getElementById("title-input")?.value ?? "";
     const body = document.getElementById("body-input")?.value ?? "";
-    writeRecovery(currentSlug, title, body);
+    const date = document.getElementById("date-input")?.value ?? "";
+    writeRecovery(currentSlug, title, body, date);
   }, 800);
 }
 
 function isDirty() {
   const titleEl = document.getElementById("title-input");
   const bodyEl = document.getElementById("body-input");
+  const dateEl = document.getElementById("date-input");
   if (!titleEl || !bodyEl) return false;
-  return titleEl.value !== savedSnapshot.title || bodyEl.value !== savedSnapshot.body;
+  return (
+    titleEl.value !== savedSnapshot.title ||
+    bodyEl.value !== savedSnapshot.body ||
+    (dateEl && dateEl.value !== savedSnapshot.date)
+  );
 }
 
 function openEditor(post) {
   currentSlug = post.slug;
   currentView = "editor";
-  savedSnapshot = { title: post.title || "", body: post.body || "" };
+  savedSnapshot = { title: post.title || "", body: post.body || "", date: post.date || "" };
 
   app.innerHTML = `
     <button class="btn-text" id="back-btn">&larr; Back</button>
@@ -152,6 +162,11 @@ function openEditor(post) {
 
     <div class="field">
       <input id="title-input" type="text" value="${escapeAttr(post.title)}" placeholder="Post title">
+    </div>
+
+    <div class="field field-date">
+      <span class="field-label">Date</span>
+      <input id="date-input" type="date" value="${escapeAttr(post.date || "")}">
     </div>
 
     <div class="field">
@@ -179,6 +194,7 @@ function openEditor(post) {
 
   const titleEl = document.getElementById("title-input");
   const bodyEl = document.getElementById("body-input");
+  const dateEl = document.getElementById("date-input");
 
   document.getElementById("back-btn").addEventListener("click", handleBack);
   document.getElementById("add-image-btn").addEventListener("click", () =>
@@ -191,7 +207,7 @@ function openEditor(post) {
   });
   document.getElementById("preview-btn").addEventListener("click", togglePreview);
 
-  [titleEl, bodyEl].forEach((el) => el.addEventListener("input", scheduleLocalAutosave));
+  [titleEl, bodyEl, dateEl].forEach((el) => el.addEventListener("input", scheduleLocalAutosave));
 
   bodyEl.addEventListener("dragover", (e) => {
     e.preventDefault();
@@ -215,7 +231,11 @@ function openEditor(post) {
 function checkRecovery(post) {
   const recovered = readRecovery(post.slug);
   if (!recovered) return;
-  if (recovered.title === post.title && recovered.body === (post.body || "")) {
+  if (
+    recovered.title === post.title &&
+    recovered.body === (post.body || "") &&
+    recovered.date === (post.date || "")
+  ) {
     clearRecovery(post.slug); // matches saved content, nothing to recover
     return;
   }
@@ -239,6 +259,7 @@ function checkRecovery(post) {
   document.getElementById("restore-btn").addEventListener("click", () => {
     document.getElementById("title-input").value = recovered.title;
     document.getElementById("body-input").value = recovered.body;
+    if (recovered.date) document.getElementById("date-input").value = recovered.date;
     slot.innerHTML = "";
   });
   document.getElementById("discard-recovery-btn").addEventListener("click", () => {
@@ -473,6 +494,7 @@ function wrapPreviewHtml(bodyHtml) {
 async function save(draft, messages) {
   const title = document.getElementById("title-input").value.trim();
   const body = document.getElementById("body-input").value;
+  const date = document.getElementById("date-input").value;
 
   if (!title) {
     setStatus("Title is required.", true);
@@ -491,10 +513,11 @@ async function save(draft, messages) {
     }
     const updated = await api(`/api/posts/${currentSlug}`, {
       method: "PUT",
-      body: JSON.stringify({ title, body, draft }),
+      body: JSON.stringify({ title, body, draft, date }),
     });
 
-    savedSnapshot = { title: updated.title, body: updated.body };
+    savedSnapshot = { title: updated.title, body: updated.body, date: updated.date };
+    document.getElementById("date-input").value = updated.date;
     clearRecovery(currentSlug);
 
     const dot = document.querySelector("#status-indicator .status-dot");

@@ -289,6 +289,31 @@ button, input, textarea {
 	margin-bottom: 8px;
 }
 
+.field-date {
+	margin-top: -8px;
+}
+
+.field-date .field-label {
+	display: inline;
+	margin-bottom: 0;
+	margin-right: 10px;
+}
+
+#date-input {
+	font-size: 13px;
+	color: #777;
+	padding: 3px 6px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	background: #fff;
+}
+
+#date-input:focus {
+	outline: none;
+	border-color: #999;
+	color: #222;
+}
+
 #body-input {
 	width: 100%;
 	min-height: 360px;

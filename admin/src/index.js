@@ -21,6 +21,7 @@ import {
   slugify,
   todayIso,
   displayDateFor,
+  isValidIsoDate,
   sanitizeFilename,
 } from "./slug.js";
 
@@ -334,6 +335,7 @@ async function updatePost(
     title,
     body,
     draft,
+    date,
   }
 ) {
   const raw =
@@ -356,6 +358,11 @@ async function updatePost(
     )
   );
 
+  const resolvedDate =
+    isValidIsoDate(date)
+      ? date
+      : existing.date;
+
   const data = {
     title:
       (
@@ -365,10 +372,10 @@ async function updatePost(
       ).trim(),
 
     date:
-      existing.date,
+      resolvedDate,
 
     displayDate:
-      existing.displayDate,
+      displayDateFor(resolvedDate),
 
     draft:
       typeof draft ===

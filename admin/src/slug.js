@@ -19,6 +19,17 @@ export function todayIso() {
   return new Date().toISOString().slice(0, 10);
 }
 
+export function isValidIsoDate(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [y, m, d] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return (
+    date.getUTCFullYear() === y &&
+    date.getUTCMonth() === m - 1 &&
+    date.getUTCDate() === d
+  );
+}
+
 export function displayDateFor(isoDate) {
   const [y, m, d] = isoDate.split("-").map(Number);
   return `${MONTHS_ES[m - 1]} ${d} ${y}`;
