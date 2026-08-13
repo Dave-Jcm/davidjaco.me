@@ -1,7 +1,7 @@
 ---
 title: "Azul, verde y marrón"
-date: 2025-04-28
-displayDate: "Abr 28 2025"
+date: 2025-04-29
+displayDate: "Abr 29 2025"
 draft: false
 ---
 
