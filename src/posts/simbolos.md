@@ -5,4 +5,4 @@ displayDate: "Ago 21 2026"
 draft: true
 ---
 
-
+Los símbolos son para reconsiderarlos.
